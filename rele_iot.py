@@ -37,25 +37,30 @@ def on_message(client, userdata, msg):
        
 
 def turnLight(mensagemRecebida):
-    if (str(mensagemRecebida) == "1"):
+    if (str(mensagemRecebida) == "on"):
+       configure()
        print("entrou 2")
        GPIO.output(RELE, GPIO.HIGH)
-    elif (str(mensagemRecebida) == "0"):
+       #GPIO.cleanup()
+    elif (str(mensagemRecebida) == "off"):
+       configure()
        print("entrou 3")
        GPIO.output(RELE, GPIO.LOW)
+       #GPIO.cleanup()
     else:
         print("Entrada inválida")
 
 
 try:
         print("Inicializando o MQTT...")
-        configure()
         client = mqtt.Client()
         client.on_connect = on_connect
         client.on_disconnect = on_disconnect
         client.on_message = on_message
         client.connect(Broker, PortaBroker, KeepAliveBroker)
+
         client.loop_forever()
 except KeyboardInterrupt:
         print("Encerranddo a aplicação")
+        #os._exit(1)
         GPIO.cleanup()
