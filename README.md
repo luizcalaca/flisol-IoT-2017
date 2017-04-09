@@ -1,4 +1,4 @@
-# Festival Latino Americano de Software Livre 2017
+# Festival Latino Americano de Software Livre 2017 - Goiânia
 
 Festival Latino Americano de Software Livre
 
